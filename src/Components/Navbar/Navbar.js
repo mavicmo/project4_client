@@ -1,32 +1,89 @@
 import React from "react";
 import { Link } from "react-router-dom";
+//dropdown
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
 
 const Navbar = () => {
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
   return (
-    <div className="flex justify-between shadow-md w-full bg-teal-600 border-b-4">
-      <h1 className="text-left p-4 ml-5 font-bold font-under text-4xl">
-        <a href="/">SimplyBudget.</a>
-      </h1>
+    <>
+      <div className="flex justify-between shadow-md w-full bg-teal-600 ">
+        <h1 className="text-left p-4 ml-5 font-bold font-under text-4xl">
+          <a href="/">SimplyBudget.</a>
+        </h1>
+        <Menu>
+          <Menu.Button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10 mt-4 mr-10 mb-3"
+              aria-hidden="true"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Menu.Button>
+          <Transition
+            as={Fragment}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Menu.Items className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="py-1">
+                <Menu.Item>
+                  {({ active }) => (
+                    <a
+                      href="#"
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block px-4 py-2 text-sm"
+                      )}
+                    >
+                      Account settings
+                    </a>
+                  )}
+                </Menu.Item>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="h-10 w-10 mt-4 mr-10"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-      >
-        <path
-          fillRule="evenodd"
-          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-          clipRule="evenodd"
-        />
-      </svg>
+                <form method="POST" action="#">
+                  <Menu.Item>
+                    {({ active }) => (
+                      <button
+                        type="submit"
+                        className={classNames(
+                          active
+                            ? "bg-gray-100 text-gray-900"
+                            : "text-gray-700",
+                          "block w-full text-left px-4 py-2 text-sm"
+                        )}
+                      >
+                        Sign out
+                      </button>
+                    )}
+                  </Menu.Item>
+                </form>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </Menu>
 
-      <ul>
+        {/* <ul>
         <li>Profile</li>
         <li>Setting</li>
         <li>Logout</li>
-      </ul>
-    </div>
+      </ul> */}
+      </div>
+    </>
   );
 };
 
