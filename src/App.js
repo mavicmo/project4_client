@@ -10,6 +10,9 @@ function App() {
     <>
       <Navbar />
       <Sidebar />
+      <main>
+        <Routes />
+      </main>
     </>
   );
 }

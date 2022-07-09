@@ -47,11 +47,12 @@ const Sidebar = () => {
             className={`text-lg block float-left cursor-pointer ${
               open && "mr-2"
             }`}
+            onClick={() => setOpen(!open)}
           />
           <input
             type={"search"}
             placeholder="Search"
-            className={`text-base bg-transparent w-full focus:outline-one ${
+            className={`text-base bg-transparent w-full focus:outline-one  ${
               !open && "hidden"
             }`}
           />
