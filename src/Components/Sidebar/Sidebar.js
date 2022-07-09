@@ -4,7 +4,10 @@ import {
   BsFillCalendar2MonthFill,
   BsFillCalendarPlusFill,
   BsSearch,
+  BsFillCalendarWeekFill,
 } from "react-icons/bs";
+import { AiFillCalendar } from "react-icons/ai";
+import ListOfMonths from "../ListOfMonths/ListOfMonths";
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
@@ -22,7 +25,7 @@ const Sidebar = () => {
           onClick={() => setOpen(!open)}
         />
         <div className="inline-flex">
-          <BsFillCalendar2MonthFill
+          <BsFillCalendarWeekFill
             className={`text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${
               open && "rotate-[360deg]"
             }`}
@@ -53,8 +56,8 @@ const Sidebar = () => {
             }`}
           />
         </div>
-        {/* where the months will be added to */}
-        <div className="">Sidebar</div>
+        <ListOfMonths open={open} />
+
         <div className={`flex items-center rounded-md mt-6 px-4 py-2`}>
           <BsFillCalendarPlusFill
             className={`text-xl block float-left mr-2 cursor-pointer duration-500 ${
