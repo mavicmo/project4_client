@@ -5,8 +5,8 @@ import Signup from "../Pages/Signup/Signup";
 const PageRouter = () => {
   return (
     <Routes>
-      <Route exact path="/login" element={<Login />} />
-      <Route exact path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
     </Routes>
   );
 };
