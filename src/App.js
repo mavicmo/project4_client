@@ -9,10 +9,10 @@ function App() {
   return (
     <div>
       <Navbar />
-      {/* <Sidebar /> */}
-      <main>
+      <Sidebar />
+      {/* <main>
         <PageRouter />
-      </main>
+      </main> */}
     </div>
   );
 }
