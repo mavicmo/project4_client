@@ -6,11 +6,19 @@ import {
   BsSearch,
   BsFillCalendarWeekFill,
 } from "react-icons/bs";
-import { AiFillCalendar } from "react-icons/ai";
 import ListOfMonths from "../ListOfMonths/ListOfMonths";
-
+import AddMonth from "../AddMonth/AddMonth";
 const Sidebar = () => {
   const [open, setOpen] = useState(true);
+  const [model, setModel] = useState(false);
+  // onClick function to add a month
+  const addMonth = () => {
+    console.log("adding a month");
+    setModel(true);
+  };
+  const handleOnClose = () => {
+    setModel(false);
+  };
   return (
     <div className="flex">
       <div
@@ -59,9 +67,14 @@ const Sidebar = () => {
         </div>
         <ListOfMonths open={open} />
 
-        <div className={`flex items-center rounded-md mt-6 px-4 py-2`}>
+        <div
+          className={`flex items-center rounded-md mt-6 px-4 py-2 cursor-pointer`}
+          onClick={() => {
+            addMonth();
+          }}
+        >
           <BsFillCalendarPlusFill
-            className={`text-xl block float-left mr-2 cursor-pointer duration-500 ${
+            className={`text-xl block float-left mr-2 duration-500 ${
               open && "rotate-[360deg]"
             }`}
           />
@@ -73,9 +86,9 @@ const Sidebar = () => {
             Add a Month
           </h1>
         </div>
-      </div>
-      <div className="p-7">
-        <h1 className="text-2xl font-semibold">HomePage</h1>
+        <div>
+          {model ? <AddMonth model={model} onClose={handleOnClose} /> : null}
+        </div>
       </div>
     </div>
   );

@@ -1,18 +1,19 @@
-import React from "react";
-
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3005/api/users";
+const BASE_URL = "http://localhost:3005/api/months";
 
-class UserMethods {
-  //test UserMethods class
+class MonthMethods {
+  //test MonthMethods class
   static test = () => {
-    return console.log("User Method has been reached");
+    return console.log("Month Method has been reached");
   };
 
   // method to sign up a user to the backend
-  static signup = (userData) => {
-    return axios.post(`http://localhost:3005/api/users/signup`, userData);
+  static addMonths = (monthData) => {
+    return axios.post(
+      `http://localhost:3005/api/months/createmonth`,
+      monthData
+    );
   };
 
   // send frontend data to backend server to login
@@ -30,4 +31,4 @@ class UserMethods {
   };
 }
 
-export default UserMethods;
+export default MonthMethods;

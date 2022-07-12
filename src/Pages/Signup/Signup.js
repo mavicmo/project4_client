@@ -32,7 +32,6 @@ const Signup = () => {
   const signUpUser = async () => {
     setEmailExistError(false);
     try {
-      UserMethods.test();
       await UserMethods.signup(values);
     } catch (error) {
       console.log(error);
