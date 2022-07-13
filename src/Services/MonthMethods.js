@@ -29,9 +29,13 @@ class MonthMethods {
       },
     });
   };
-  // retrieve user data from local localStorage
-  static getCurrentUser = () => {
-    return JSON.parse(localStorage.getItem("user"));
+  // retrieve month data by ID
+  static getMonthByID = (monthID, currentUserToken) => {
+    return axios.get(`http://localhost:3005/api/months/${monthID}`, {
+      headers: {
+        Authorization: `${currentUserToken}`,
+      },
+    });
   };
 
   static logout = () => {
