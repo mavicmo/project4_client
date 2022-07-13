@@ -32,7 +32,6 @@ const Signup = () => {
   const signUpUser = async () => {
     setEmailExistError(false);
     try {
-      UserMethods.test();
       await UserMethods.signup(values);
     } catch (error) {
       console.log(error);
@@ -84,7 +83,7 @@ const Signup = () => {
          text-gray-600"
         >
           Or
-          <Link to="/login">
+          <Link to="/">
             <span className="text-black mx-2 underline cursor-pointer">
               Login to your account
             </span>

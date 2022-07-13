@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserMethods from "../../Services/UserMethods";
 const Login = () => {
   // state the variables
@@ -7,6 +7,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   // handle submit the form
   const handleSubmit = (e) => {
@@ -17,16 +18,12 @@ const Login = () => {
 
   const loginHandle = async () => {
     try {
-      console.log(`hit`);
-      if (values) {
-        localStorage.setItem("email", values.email);
-      } else {
-        localStorage.removeItem("email", values.email);
-      }
-
       const res = await UserMethods.login(values);
       console.log(res);
       localStorage.setItem("user", JSON.stringify(res.data));
+
+      navigate("/homepage");
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }

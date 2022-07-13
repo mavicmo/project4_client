@@ -1,13 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 //dropdown
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
-
+import UserMethods from "../../Services/UserMethods";
 const Navbar = () => {
   function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
   }
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex justify-between shadow-md w-full bg-teal-600 ">
@@ -55,7 +56,7 @@ const Navbar = () => {
                   )}
                 </Menu.Item>
 
-                <form method="POST" action="#">
+                <div>
                   <Menu.Item>
                     {({ active }) => (
                       <button
@@ -66,22 +67,21 @@ const Navbar = () => {
                             : "text-gray-700",
                           "block w-full text-left px-4 py-2 text-sm"
                         )}
+                        onClick={() => {
+                          UserMethods.logout();
+                          navigate("/");
+                          window.location.reload();
+                        }}
                       >
                         Sign out
                       </button>
                     )}
                   </Menu.Item>
-                </form>
+                </div>
               </div>
             </Menu.Items>
           </Transition>
         </Menu>
-
-        {/* <ul>
-        <li>Profile</li>
-        <li>Setting</li>
-        <li>Logout</li>
-      </ul> */}
       </div>
     </>
   );
