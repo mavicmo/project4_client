@@ -8,18 +8,26 @@ class MonthMethods {
     return console.log("Month Method has been reached");
   };
 
-  // method to sign up a user to the backend
-  static addMonths = (monthData) => {
+  // method to send data to the back end to add a month
+  static addMonths = (monthData, currentUserToken) => {
     return axios.post(
       `http://localhost:3005/api/months/createmonth`,
-      monthData
+      monthData,
+      {
+        headers: {
+          Authorization: `${currentUserToken}`,
+        },
+      }
     );
   };
 
   // send frontend data to backend server to login
-  static login = (userData) => {
-    console.log("login route has been reached");
-    return axios.post(`http://localhost:3005/api/users/login`, userData);
+  static getMonths = (currentUserToken) => {
+    return axios.get(`http://localhost:3005/api/months/`, {
+      headers: {
+        Authorization: `${currentUserToken}`,
+      },
+    });
   };
   // retrieve user data from local localStorage
   static getCurrentUser = () => {

@@ -1,6 +1,7 @@
 import React from "react";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import UserMethods from "../../Services/UserMethods";
+import Months from "../../Components/Months/Months";
 const Homepage = () => {
   const currentUser = UserMethods.getCurrentUser().user;
   console.log(currentUser);
@@ -12,6 +13,7 @@ const Homepage = () => {
           Hello {currentUser.firstName}!
         </h1>
       </div>
+      <Months />
     </div>
   );
 };

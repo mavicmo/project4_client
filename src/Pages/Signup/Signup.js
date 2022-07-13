@@ -83,7 +83,7 @@ const Signup = () => {
          text-gray-600"
         >
           Or
-          <Link to="/login">
+          <Link to="/">
             <span className="text-black mx-2 underline cursor-pointer">
               Login to your account
             </span>

@@ -1,6 +1,9 @@
 import { useState } from "react";
 import MonthMethods from "../../Services/MonthMethods";
+import UserMethods from "../../Services/UserMethods";
 const AddMonth = ({ model, onClose }) => {
+  const currentUserToken = UserMethods.getCurrentUser().jwt;
+
   const [values, setValues] = useState({
     month: "",
     year: "",
@@ -17,7 +20,8 @@ const AddMonth = ({ model, onClose }) => {
 
   const addMonthHandler = async () => {
     try {
-      await MonthMethods.addMonths(values);
+      await MonthMethods.addMonths(values, currentUserToken);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -31,26 +35,26 @@ const AddMonth = ({ model, onClose }) => {
     <div>
       <div
         id="container"
-        className="bg-black bg-opacity-50 absolute inset-0 flex justify-center items-center"
+        className=" absolute inset-0 flex justify-center items-center"
         onClick={handleOnClose}
       >
-        <form className="bg-gray-200 rounded p-5" onSubmit={handleSubmit}>
+        <form className="bg-teal-700 rounded p-5" onSubmit={handleSubmit}>
           <div>
             <div className="flex justify-center">
               <div className="w-full">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="Month"
+                  className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
+                  htmlFor="month"
                 >
                   Month
                 </label>
                 <input
                   //   type="Month"
-                  name="Month"
-                  id="Month"
-                  onChange={onChange}
+                  name="month"
+                  id="month"
                   value={values.month}
-                  className="bg-white appearance-none border-2 border-gray-200 rounded w-full 
+                  onChange={onChange}
+                  className="bg-white appearance-none border-2 border-teal-200 rounded w-full 
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
                   required
                 />
@@ -60,18 +64,18 @@ const AddMonth = ({ model, onClose }) => {
             <div className="flex justify-center mt-4">
               <div className="w-full">
                 <label
-                  className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                  htmlFor="Year"
+                  className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
+                  htmlFor="year"
                 >
                   Year
                 </label>
                 <input
-                  type="Year"
-                  name="Year"
-                  id="Year"
+                  type="year"
+                  name="year"
+                  id="year"
                   onChange={onChange}
                   value={values.year}
-                  className="bg-white appearance-none border-2 border-gray-200 rounded w-full 
+                  className="bg-white appearance-none border-2 border-teal-200 rounded w-full 
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
                   required
                 />

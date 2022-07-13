@@ -13,7 +13,6 @@ const Sidebar = () => {
   const [model, setModel] = useState(false);
   // onClick function to add a month
   const addMonth = () => {
-    console.log("adding a month");
     setModel(true);
   };
   const handleOnClose = () => {
