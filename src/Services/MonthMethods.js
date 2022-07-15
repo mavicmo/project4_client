@@ -38,8 +38,12 @@ class MonthMethods {
     });
   };
 
-  static logout = () => {
-    localStorage.removeItem("user");
+  static addExpenseToMonth = (data, currentUserToken) => {
+    return axios.put(`http://localhost:3005/api/months/addexpense`, data, {
+      headers: {
+        Authorization: `${currentUserToken}`,
+      },
+    });
   };
 }
 

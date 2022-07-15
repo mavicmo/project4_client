@@ -21,7 +21,7 @@ const Sidebar = () => {
   return (
     <div className="flex">
       <div
-        className={`duration-500 relative bg-teal-600 shadow h-screen p-5 pt-8 ${
+        className={`duration-500 relative bg-teal-600 shadow  p-5 pt-8 ${
           open ? "w-60" : "w-20"
         }  `}
       >
