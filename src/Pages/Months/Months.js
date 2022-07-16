@@ -3,21 +3,22 @@ import { useParams } from "react-router-dom";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import UserMethods from "../../Services/UserMethods";
 import MonthMethods from "../../Services/MonthMethods";
-import ExpenseForm from "../../Components/ExpenseForm/ExpenseForm";
-import Transactions from "../../Components/Transactions/Transactions";
+import TransactionForm from "../../Components/TransactionForm/TransactionForm";
+import Expenses from "../../Components/Expenses/Expenses";
 const Months = () => {
   const monthId = useParams().id;
   const userToken = UserMethods.getCurrentUser().jwt;
   const currentUser = UserMethods.getCurrentUser().user;
   const [month, setMonth] = useState([]);
+  const [listOfExpenses, setListOfExpenses] = useState([]);
   useEffect(() => {
     getMonth();
   }, [monthId]);
   const getMonth = async () => {
     try {
       const res = await MonthMethods.getMonthByID(monthId, userToken);
-      console.log(res.data.month);
       setMonth(res.data.month);
+      setListOfExpenses(res.data.month.expenses);
     } catch (error) {
       console.log(error);
     }
@@ -30,6 +31,7 @@ const Months = () => {
   if (!month.length) {
     console.log("waiting...");
   }
+
   return (
     <div className="flex">
       <Sidebar />
@@ -43,24 +45,11 @@ const Months = () => {
           {/* Chart */}
           {/* <Graph></Graph> */}
           {/* Form */}
-          <ExpenseForm monthId={monthId} />
-          <Transactions />
+          <TransactionForm monthId={monthId} />
+          <Expenses expensesId={listOfExpenses} monthId={monthId} />
         </div>
       </div>
     </div>
-    // <div className="flex">
-    //   <Sidebar />
-    //   <div className="p-7 border-red-500">
-    //     <h1 className="text-4xl font-semibold border border-red-500">
-    //       Expense for the Month of {capitalizeFirstLetter(`${month.month}`)}
-    //     </h1>
-    //   </div>
-    //   <div className="p-7 border-red-500">
-    //     <h1 className="text-2xl font-semibold border border-red-500">
-    //       Expense for the Month of {capitalizeFirstLetter(`${month.month}`)}
-    //     </h1>
-    //   </div>
-    // </div>
   );
 };
 

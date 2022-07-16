@@ -45,6 +45,13 @@ class MonthMethods {
       },
     });
   };
+
+  static getExpensePerMonth = (monthId, currentUserToken) => {
+    console.log(monthId);
+    return axios.get(
+      `http://localhost:3005/api/months/month/getexpenses/${monthId}`
+    );
+  };
 }
 
 export default MonthMethods;

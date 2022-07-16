@@ -56,6 +56,7 @@ const ExpenseForm = ({ monthId }) => {
             <option value="Want">Want</option>
             <option value="Save">Save</option>
             <option value="Investment">Investment</option>
+            <option value="Paycheck">Paycheck</option>
           </select>
           <div className="input-group">
             <div className="flex justify-center">
