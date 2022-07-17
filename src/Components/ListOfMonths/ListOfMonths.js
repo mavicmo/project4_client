@@ -32,7 +32,7 @@ const ListOfMonths = (open) => {
       <div className="m-3 ">
         {months.map((data) => (
           <Link key={data._id} to={`/${data._id}`}>
-            <div className="inline-flex border-b pb-3 mt-2 cursor-pointer border-black">
+            <div className="inline-flex  pb-3 mt-2 cursor-pointer border-black">
               <BsFillCalendar2MonthFill
                 className={`text-2xl rounded cursor-pointer block float-left mr-2 duration-500  ${
                   open && "rotate-[360deg]"

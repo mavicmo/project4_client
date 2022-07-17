@@ -46,8 +46,16 @@ class MonthMethods {
     });
   };
 
+  static removeExpenseFromMonth = (data, currentUserToken) => {
+    console.log(data);
+    return axios.put(`http://localhost:3005/api/months/removeexpense`, data, {
+      headers: {
+        Authorization: `${currentUserToken}`,
+      },
+    });
+  };
+
   static getExpensePerMonth = (monthId, currentUserToken) => {
-    console.log(monthId);
     return axios.get(
       `http://localhost:3005/api/months/month/getexpenses/${monthId}`
     );

@@ -8,10 +8,12 @@ import Expenses from "../../Components/Expenses/Expenses";
 const Months = () => {
   const monthId = useParams().id;
   const userToken = UserMethods.getCurrentUser().jwt;
-  const currentUser = UserMethods.getCurrentUser().user;
+
   const [month, setMonth] = useState([]);
   const [listOfExpenses, setListOfExpenses] = useState([]);
+
   useEffect(() => {
+    console.log(`useEffect just ran`);
     getMonth();
   }, [monthId]);
   const getMonth = async () => {
@@ -41,7 +43,7 @@ const Months = () => {
         </h1>
 
         {/* grid columns */}
-        <div className="grid md:grid-cols-2  ">
+        <div className="grid md:grid-cols-2">
           {/* Chart */}
           {/* <Graph></Graph> */}
           {/* Form */}

@@ -4,7 +4,7 @@ import ExpenseMethods from "../../Services/ExpenseMethods";
 import UserMethods from "../../Services/UserMethods";
 import MonthMethods from "../../Services/MonthMethods";
 
-const ExpenseForm = ({ monthId }) => {
+const TransactionForm = ({ monthId }) => {
   const initialState = { name: "", amount: "", category: "", monthId: monthId };
   const currentUserToken = UserMethods.getCurrentUser().jwt;
   const [values, setValues] = useState(initialState);
@@ -113,4 +113,4 @@ const ExpenseForm = ({ monthId }) => {
   );
 };
 
-export default ExpenseForm;
+export default TransactionForm;
