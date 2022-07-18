@@ -1,19 +1,26 @@
 import { useEffect, useState } from "react";
-
+import { useParams } from "react-router-dom";
 import ExpenseMethods from "../../Services/ExpenseMethods";
 import UserMethods from "../../Services/UserMethods";
 import MonthMethods from "../../Services/MonthMethods";
 
 import DisplayExpenses from "../DisplayExpenses/DisplayExpenses";
+import EditExpense from "../EditExpense/EditExpense";
 
-const Expenses = ({ expensesId, monthId }) => {
+const Expenses = ({
+  listOfExpenses,
+
+  setListOfExpenses,
+  editExpense,
+}) => {
+  const monthId = useParams().id;
+  //modal expenses
   const currentUserToken = UserMethods.getCurrentUser().jwt;
 
   const [expenses, setExpenses] = useState([]);
   useEffect(() => {
-    console.log(`use effect just ran`);
     getExpenseData();
-  }, [expensesId]);
+  }, [listOfExpenses]);
   const getExpenseData = async () => {
     try {
       const res = await MonthMethods.getExpensePerMonth(
@@ -41,6 +48,7 @@ const Expenses = ({ expensesId, monthId }) => {
         monthId={monthId}
         expenses={expenses}
         capitalizeFirstLetter={capitalizeFirstLetter}
+        setListOfExpenses={setListOfExpenses}
       />
     </div>
   );

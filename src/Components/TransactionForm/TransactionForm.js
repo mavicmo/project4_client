@@ -4,11 +4,18 @@ import ExpenseMethods from "../../Services/ExpenseMethods";
 import UserMethods from "../../Services/UserMethods";
 import MonthMethods from "../../Services/MonthMethods";
 
-const TransactionForm = ({ monthId }) => {
+const TransactionForm = ({
+  monthId,
+  setListOfExpenses,
+  listOfExpenses,
+  expenseValues,
+  setExpenseValues,
+}) => {
   const initialState = { name: "", amount: "", category: "", monthId: monthId };
   const currentUserToken = UserMethods.getCurrentUser().jwt;
   const [values, setValues] = useState(initialState);
-
+  // setExpenseValues(initialState);
+  // console.log(expenseValues);
   const handleSubmit = (e) => {
     e.preventDefault();
     ExpenseMethods.test();
@@ -27,6 +34,7 @@ const TransactionForm = ({ monthId }) => {
         monthId,
       };
       await MonthMethods.addExpenseToMonth(data, currentUserToken);
+      setListOfExpenses([...listOfExpenses, data.expenseId]);
       setValues(initialState);
     } catch (error) {
       console.log(error);
@@ -40,7 +48,9 @@ const TransactionForm = ({ monthId }) => {
 
   //   console.log(values);
   return (
-    <div className="form max-w-sm h-96 ml-5 w-96 border p-10 bg-teal-100 shadow-sm border-grey-500 rounded-3xl">
+    <div
+      className={`form max-w-sm h-96 ml-5 w-96 border p-10 bg-teal-100 shadow-sm border-grey-500 rounded-3xl`}
+    >
       <h1 className="font-bold pb-4  text-2xl">Transaction</h1>
       <form onSubmit={handleSubmit}>
         <div className="grid gap-4">
@@ -51,7 +61,7 @@ const TransactionForm = ({ monthId }) => {
             onChange={onChange}
             className="bg-gray-50 border border-teal-500  text-gray-900 text-lg rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-teal-500 dark:focus:border-teal-500"
           >
-            <option selected>Choose the type of Expense</option>
+            <option defaultValue>Choose the type of Expense</option>
             <option value="Need">Need</option>
             <option value="Want">Want</option>
             <option value="Save">Save</option>

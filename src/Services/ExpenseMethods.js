@@ -38,12 +38,16 @@ class ExpenseMethods {
     });
   };
 
-  static editExpensesById = (expenseID, currentUserToken) => {
-    return axios.put(`http://localhost:3005/api/expenses/${expenseID}`, {
-      headers: {
-        Authorization: `${currentUserToken}`,
-      },
-    });
+  static editExpensesById = (data, expenseID, currentUserToken) => {
+    return axios.put(
+      `http://localhost:3005/api/expenses/edit/${expenseID}`,
+      data,
+      {
+        headers: {
+          Authorization: `${currentUserToken}`,
+        },
+      }
+    );
   };
 
   static deleteExpenseById = (expenseID, currentUserToken) => {

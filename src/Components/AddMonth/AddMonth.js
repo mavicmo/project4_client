@@ -13,7 +13,6 @@ const AddMonth = ({ model, onClose }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    MonthMethods.test();
 
     addMonthHandler();
   };

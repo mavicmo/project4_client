@@ -9,7 +9,7 @@ const ListOfMonths = (open) => {
   const [months, setMonths] = useState([]);
   useEffect(() => {
     getMonthData();
-  }, []);
+  }, [months]);
   const getMonthData = async () => {
     try {
       const res = await MonthMethods.getMonths(currentUserToken);

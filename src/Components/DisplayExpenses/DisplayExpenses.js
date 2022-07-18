@@ -1,31 +1,55 @@
-import React from "react";
-
+import { useState } from "react";
+import EditExpense from "../EditExpense/EditExpense";
 import UserMethods from "../../Services/UserMethods";
 import ExpenseMethods from "../../Services/ExpenseMethods";
 import MonthMethods from "../../Services/MonthMethods";
-const DisplayExpenses = ({ expenses, capitalizeFirstLetter, monthId }) => {
+const DisplayExpenses = ({
+  expenses,
+  capitalizeFirstLetter,
+  monthId,
+  listOfExpenses,
+  setListOfExpenses,
+}) => {
+  const [transactionsModal, setTransctionsModal] = useState(false);
+  const [transactionId, setTransactionId] = useState();
   const userToken = UserMethods.getCurrentUser().jwt;
+  // console.log(monthId);
+  const openExpenseModal = (id) => {
+    setTransctionsModal(true);
+    setTransactionId(id);
+  };
 
-  const editExpense = async (expenseId) => {
+  const editExpense = async (data) => {
     try {
-      const res = await ExpenseMethods.editExpensesById(expenseId, userToken);
-      console.log(res.data);
+      console.log(transactionId);
+      console.log(data);
+      await ExpenseMethods.editExpensesById(data, transactionId, userToken);
+      setTransctionsModal(false);
     } catch (error) {
       console.log(error);
     }
   };
-  const deleteExpense = async (expenseId, monthsId) => {
+  const deleteExpense = async (expenseId, monthId) => {
     try {
       const data = {
         expenseId,
-        monthsId,
+        monthId,
       };
+
+      console.log(data);
+
       await ExpenseMethods.deleteExpenseById(expenseId, userToken);
       await MonthMethods.removeExpenseFromMonth(data, userToken);
+      const newListofExpenses = listOfExpenses.filter(
+        (expense) => expense !== expenseId
+      );
+
+      setListOfExpenses(newListofExpenses);
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div>
       {Object.keys(expenses).map((expense) => {
@@ -69,14 +93,16 @@ const DisplayExpenses = ({ expenses, capitalizeFirstLetter, monthId }) => {
 
                         <td className="py-3 px-3 text-left">
                           <a
-                            href="#"
+                            onClick={() => {
+                              openExpenseModal(item._id);
+                            }}
                             className="font-medium cursor-pointer text-blue-600 dark:text-blue-500 mr-1 hover:underline"
                           >
                             Edit
                           </a>
                           <a
                             onClick={() => {
-                              deleteExpense(item._id, monthId);
+                              deleteExpense(item._id);
                             }}
                             className="font-mediu cursor-pointer text-red-600 dark:text-red-500 hover:underline "
                           >
@@ -92,6 +118,15 @@ const DisplayExpenses = ({ expenses, capitalizeFirstLetter, monthId }) => {
           </div>
         );
       })}
+      <div>
+        {transactionsModal && (
+          <EditExpense
+            setTransctionsModal={setTransctionsModal}
+            expenses={expenses}
+            editExpense={editExpense}
+          />
+        )}
+      </div>
     </div>
   );
 };
