@@ -13,7 +13,7 @@ const Navbar = () => {
     <>
       <div className="flex justify-between shadow-md w-full bg-teal-600 ">
         <h1 className="text-left p-4 ml-5 font-bold font-under text-4xl">
-          <a href="/">SimplyBudget.</a>
+          <a href="/homepage">SimplyBudget.</a>
         </h1>
         <Menu>
           <Menu.Button>
