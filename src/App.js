@@ -7,7 +7,7 @@ import Navbar from "./Components/Navbar/Navbar";
 
 function App() {
   return (
-    <div>
+    <div className="container-lg">
       <Navbar />
       {/* <Sidebar /> */}
       <main>

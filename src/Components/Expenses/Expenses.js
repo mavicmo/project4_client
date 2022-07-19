@@ -8,19 +8,20 @@ import DisplayExpenses from "../DisplayExpenses/DisplayExpenses";
 import EditExpense from "../EditExpense/EditExpense";
 
 const Expenses = ({
-  listOfExpenses,
-
+  monthId,
   setListOfExpenses,
-  editExpense,
+  renderNewExpense,
+  setRenderNewExpense,
 }) => {
-  const monthId = useParams().id;
   //modal expenses
   const currentUserToken = UserMethods.getCurrentUser().jwt;
-
   const [expenses, setExpenses] = useState([]);
+  const [useEffectExpense, setUseEffectExpense] = useState(false);
   useEffect(() => {
     getExpenseData();
-  }, [listOfExpenses]);
+    setUseEffectExpense(false);
+    setRenderNewExpense(false);
+  }, [useEffectExpense, renderNewExpense]);
   const getExpenseData = async () => {
     try {
       const res = await MonthMethods.getExpensePerMonth(
@@ -49,6 +50,7 @@ const Expenses = ({
         expenses={expenses}
         capitalizeFirstLetter={capitalizeFirstLetter}
         setListOfExpenses={setListOfExpenses}
+        setUseEffectExpense={setUseEffectExpense}
       />
     </div>
   );

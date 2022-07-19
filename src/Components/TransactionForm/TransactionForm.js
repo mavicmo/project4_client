@@ -8,6 +8,7 @@ const TransactionForm = ({
   monthId,
   setListOfExpenses,
   listOfExpenses,
+  setRenderNewExpense,
   expenseValues,
   setExpenseValues,
 }) => {
@@ -34,6 +35,7 @@ const TransactionForm = ({
         monthId,
       };
       await MonthMethods.addExpenseToMonth(data, currentUserToken);
+      setRenderNewExpense(true);
       setListOfExpenses([...listOfExpenses, data.expenseId]);
       setValues(initialState);
     } catch (error) {
@@ -46,7 +48,6 @@ const TransactionForm = ({
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  //   console.log(values);
   return (
     <div
       className={`form max-w-sm h-96 ml-5 w-96 border p-10 bg-teal-100 shadow-sm border-grey-500 rounded-3xl`}

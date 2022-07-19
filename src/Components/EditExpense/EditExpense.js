@@ -45,13 +45,13 @@ const EditExpense = ({
   return (
     <div
       id="container"
-      className=" absolute inset-0 z-50 bg-opacity-80 bg-teal-400 flex justify-center items-center "
+      className=" absolute inset-0 z-50 bg-opacity-80 flex justify-center items-center "
       onClick={handleOnClose}
     >
       <div
-        className={`form max-w-sm  ml-5 w-96 border p-10 bg-teal-100 shadow-sm border-grey-500 rounded-3xl`}
+        className={`form max-w-sm  ml-5 w-96 border p-10 bg-teal-700 shadow-sm border-grey-500 rounded-3xl`}
       >
-        <h1 className="font-bold pb-4  text-2xl">Edit Expense</h1>
+        <h1 className="font-bold pb-4 text-white text-2xl">Edit Expense</h1>
         <form onSubmit={handleSubmit}>
           <div className="grid gap-4">
             <select
@@ -59,7 +59,7 @@ const EditExpense = ({
               name="category"
               value={values.category}
               onChange={onChange}
-              className="bg-gray-50 border border-teal-500  text-gray-900 text-lg rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-teal-500 dark:focus:border-teal-500"
+              className="bg-gray-50 border border-black   text-lg rounded-lg focus:ring-teal-700 focus:border-teal-700 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-teal-700 dark:focus:border-teal-700"
             >
               <option defaultValue>Choose the type of Expense</option>
               <option value="Need">Need</option>
@@ -72,7 +72,7 @@ const EditExpense = ({
               <div className="flex justify-center">
                 <div className=" w-full rounded-lg">
                   <label
-                    className="block text-left tracking-wide text-gray-700 text-sm font-bold mb-2 ml-2"
+                    className="block text-left tracking-wide text-gray-100 text-sm font-bold mb-2 ml-2"
                     htmlFor="name"
                   >
                     Name of Transaction
@@ -92,7 +92,7 @@ const EditExpense = ({
               <div className="flex justify-center">
                 <div className=" w-full rounded-lg">
                   <label
-                    className="block text-left tracking-wide text-gray-700 text-sm font-bold mb-2 ml-2"
+                    className="block text-left tracking-wide text-gray-100 text-sm font-bold mb-2 ml-2"
                     htmlFor="number"
                   >
                     Amount for the Transaction

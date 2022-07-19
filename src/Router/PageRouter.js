@@ -3,7 +3,7 @@ import Login from "../Pages/Login/Login";
 import Signup from "../Pages/Signup/Signup";
 import Homepage from "../Pages/Homepage/Homepage";
 import Months from "../Pages/Months/Months";
-
+import UserProfile from "../Pages/UserProfile/UserProfile";
 const PageRouter = () => {
   return (
     <Routes>
@@ -11,6 +11,7 @@ const PageRouter = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/homepage" element={<Homepage />} />
       <Route path="/:id" element={<Months />} />
+      <Route path="/profile" element={<UserProfile />} />
     </Routes>
   );
 };

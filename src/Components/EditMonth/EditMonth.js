@@ -31,7 +31,7 @@ const EditMonth = ({ setEditModal, setChoice, month, editMonth }) => {
     <div>
       <div
         id="container"
-        className=" absolute inset-0 z-50 bg-opacity-80 bg-teal-100 flex justify-center items-center "
+        className=" absolute inset-0 z-50 bg-opacity-80 flex justify-center items-center "
         onClick={handleOnClose}
       >
         <form className="bg-teal-700  rounded-2xl p-5 " onSubmit={handleSubmit}>

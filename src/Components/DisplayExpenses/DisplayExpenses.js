@@ -9,11 +9,12 @@ const DisplayExpenses = ({
   monthId,
   listOfExpenses,
   setListOfExpenses,
+  setUseEffectExpense,
 }) => {
   const [transactionsModal, setTransctionsModal] = useState(false);
   const [transactionId, setTransactionId] = useState();
   const userToken = UserMethods.getCurrentUser().jwt;
-  // console.log(monthId);
+
   const openExpenseModal = (id) => {
     setTransctionsModal(true);
     setTransactionId(id);
@@ -25,11 +26,12 @@ const DisplayExpenses = ({
       console.log(data);
       await ExpenseMethods.editExpensesById(data, transactionId, userToken);
       setTransctionsModal(false);
+      setUseEffectExpense(true);
     } catch (error) {
       console.log(error);
     }
   };
-  const deleteExpense = async (expenseId, monthId) => {
+  const deleteExpense = async (expenseId) => {
     try {
       const data = {
         expenseId,
@@ -40,11 +42,7 @@ const DisplayExpenses = ({
 
       await ExpenseMethods.deleteExpenseById(expenseId, userToken);
       await MonthMethods.removeExpenseFromMonth(data, userToken);
-      const newListofExpenses = listOfExpenses.filter(
-        (expense) => expense !== expenseId
-      );
-
-      setListOfExpenses(newListofExpenses);
+      setUseEffectExpense(true);
     } catch (error) {
       console.log(error);
     }
@@ -59,7 +57,7 @@ const DisplayExpenses = ({
               {capitalizeFirstLetter(`${expense}`)}
             </h1>
             <div className="overflow-auto whitespace-normal">
-              <table className="w-full text-sm text-left whitespace-normal text-gray-500 dark:text-black table-auto">
+              <table className="w-full text-sm text-left whitespace-normal  text-gray-500 dark:text-black table-auto">
                 <thead className="text-xs text-emerald-50 uppercase whitespace-normal bg-gray-50 dark:bg-teal-900 dark:text-emerald-50">
                   <tr>
                     <th scope="col" className="whitespace-normal py-1 px-3">
@@ -75,16 +73,16 @@ const DisplayExpenses = ({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="overflow-auto  relative h-2/6">
+                <tbody className="overflow-auto relative h-2/6">
                   {expenses[expense].map((item) => {
                     return (
                       <tr
                         key={item._id}
-                        className="bg-white border w-96 dark:bg-emerald-300 dark:border-teal-700 hover:bg-gray-50 dark:hover:bg-slate-50"
+                        className="bg-white border  w-96 dark:bg-emerald-300 rounded-lg dark:border-teal-700 hover:bg-gray-50 dark:hover:bg-slate-50"
                       >
                         <th
                           scope="row"
-                          className="py-3 px-3  font-medium text-gray-900 whitespace-nowrap dark:text-black"
+                          className="py-3 px-3  font-medium text-gray-900 uppercase whitespace-nowrap dark:text-black"
                         >
                           {item.name}
                         </th>
@@ -96,7 +94,7 @@ const DisplayExpenses = ({
                             onClick={() => {
                               openExpenseModal(item._id);
                             }}
-                            className="font-medium cursor-pointer text-blue-600 dark:text-blue-500 mr-1 hover:underline"
+                            className="font-medium cursor-pointer text-blue-600  dark:text-blue-500 mr-1 hover:underline"
                           >
                             Edit
                           </a>
@@ -124,6 +122,7 @@ const DisplayExpenses = ({
             setTransctionsModal={setTransctionsModal}
             expenses={expenses}
             editExpense={editExpense}
+            setUseEffectExpense={setUseEffectExpense}
           />
         )}
       </div>

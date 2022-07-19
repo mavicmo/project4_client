@@ -57,6 +57,7 @@ class MonthMethods {
 
   // remove a expense to the month
   static removeExpenseFromMonth = (data, currentUserToken) => {
+    console.log(data);
     return axios.put(`http://localhost:3005/api/months/removeexpense`, data, {
       headers: {
         Authorization: `${currentUserToken}`,
