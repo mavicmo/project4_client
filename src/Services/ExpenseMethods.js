@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3005/api/Expense";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3005";
 
 class ExpenseMethods {
   //test ExpenseMethods class
@@ -10,20 +10,16 @@ class ExpenseMethods {
 
   // method to send data to the back end to add a expense
   static addExpense = (expenseData, currentUserToken) => {
-    return axios.post(
-      `http://localhost:3005/api/expenses/createexpense`,
-      expenseData,
-      {
-        headers: {
-          Authorization: `${currentUserToken}`,
-        },
-      }
-    );
+    return axios.post(BASE_URL + `/api/expenses/createexpense`, expenseData, {
+      headers: {
+        Authorization: `${currentUserToken}`,
+      },
+    });
   };
 
   // send frontend data to backend server to login
   static getExpenses = (currentUserToken) => {
-    return axios.get(`http://localhost:3005/api/expenses/`, {
+    return axios.get(BASE_URL + `/api/expenses/`, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
@@ -31,7 +27,7 @@ class ExpenseMethods {
   };
   // retrieve expense data by ID
   static getExpenseByID = (expenseID, currentUserToken) => {
-    return axios.get(`http://localhost:3005/api/expenses/${expenseID}`, {
+    return axios.get(BASE_URL + `/api/expenses/${expenseID}`, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
@@ -39,19 +35,15 @@ class ExpenseMethods {
   };
 
   static editExpensesById = (data, expenseID, currentUserToken) => {
-    return axios.put(
-      `http://localhost:3005/api/expenses/edit/${expenseID}`,
-      data,
-      {
-        headers: {
-          Authorization: `${currentUserToken}`,
-        },
-      }
-    );
+    return axios.put(BASE_URL + `/api/expenses/edit/${expenseID}`, data, {
+      headers: {
+        Authorization: `${currentUserToken}`,
+      },
+    });
   };
 
   static deleteExpenseById = (expenseID, currentUserToken) => {
-    return axios.delete(`http://localhost:3005/api/expenses/${expenseID}`, {
+    return axios.delete(BASE_URL + `/api/expenses/${expenseID}`, {
       headers: {
         Authorization: `${currentUserToken}`,
       },

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3005/api/months";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3005";
 
 class MonthMethods {
   //test MonthMethods class
@@ -10,20 +10,16 @@ class MonthMethods {
 
   // method to send data to the back end to add a month
   static addMonths = (monthData, currentUserToken) => {
-    return axios.post(
-      `http://localhost:3005/api/months/createmonth`,
-      monthData,
-      {
-        headers: {
-          Authorization: `${currentUserToken}`,
-        },
-      }
-    );
+    return axios.post(BASE_URL + `/api/months/createmonth`, monthData, {
+      headers: {
+        Authorization: `${currentUserToken}`,
+      },
+    });
   };
 
   // send frontend data to backend server to login
   static getMonths = (currentUserToken) => {
-    return axios.get(`http://localhost:3005/api/months/`, {
+    return axios.get(BASE_URL + `/api/months/`, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
@@ -31,7 +27,7 @@ class MonthMethods {
   };
   // retrieve month data by ID
   static getMonthByID = (monthID, currentUserToken) => {
-    return axios.get(`http://localhost:3005/api/months/${monthID}`, {
+    return axios.get(BASE_URL + `/api/months/${monthID}`, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
@@ -39,7 +35,7 @@ class MonthMethods {
   };
 
   static editMonthById = (data, monthID, currentUserToken) => {
-    return axios.put(`http://localhost:3005/api/months/edit/${monthID}`, data, {
+    return axios.put(BASE_URL + `/api/months/edit/${monthID}`, data, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
@@ -48,7 +44,7 @@ class MonthMethods {
 
   // add a expense to the month
   static addExpenseToMonth = (data, currentUserToken) => {
-    return axios.put(`http://localhost:3005/api/months/addexpense`, data, {
+    return axios.put(BASE_URL + `/api/months/addexpense`, data, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
@@ -58,7 +54,7 @@ class MonthMethods {
   // remove a expense to the month
   static removeExpenseFromMonth = (data, currentUserToken) => {
     console.log(data);
-    return axios.put(`http://localhost:3005/api/months/removeexpense`, data, {
+    return axios.put(BASE_URL + `/api/months/removeexpense`, data, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
