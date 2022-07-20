@@ -63,15 +63,13 @@ class MonthMethods {
 
   // get all the expenses from a month
   static getExpensePerMonth = (monthId) => {
-    return axios.get(
-      `http://localhost:3005/api/months/month/getexpenses/${monthId}`
-    );
+    return axios.get(BASE_URL + `/api/months/month/getexpenses/${monthId}`);
   };
 
   // delete all the expenses from the month
   static deleteExpensesPerMonth = (monthId, currentUserToken) => {
     return axios.delete(
-      `http://localhost:3005/api/months/month/deleteexpenses/${monthId}`,
+      BASE_URL + `/api/months/month/deleteexpenses/${monthId}`,
       {
         headers: {
           Authorization: `${currentUserToken}`,
@@ -82,7 +80,7 @@ class MonthMethods {
 
   // delete month by Id
   static deleteMonthById = (monthId, currentUserToken) => {
-    return axios.delete(`http://localhost:3005/api/months/${monthId}`, {
+    return axios.delete(BASE_URL + `/api/months/${monthId}`, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
