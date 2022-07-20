@@ -7,8 +7,6 @@ const DisplayExpenses = ({
   expenses,
   capitalizeFirstLetter,
   monthId,
-  listOfExpenses,
-  setListOfExpenses,
   setUseEffectExpense,
 }) => {
   const [transactionsModal, setTransctionsModal] = useState(false);

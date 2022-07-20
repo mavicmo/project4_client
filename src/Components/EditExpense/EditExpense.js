@@ -1,17 +1,8 @@
 import { useState } from "react";
 
-import ExpenseMethods from "../../Services/ExpenseMethods";
 import UserMethods from "../../Services/UserMethods";
-import MonthMethods from "../../Services/MonthMethods";
 
-const EditExpense = ({
-  setListOfExpenses,
-  listOfExpenses,
-  expenses,
-  setExpenseValues,
-  setTransctionsModal,
-  editExpense,
-}) => {
+const EditExpense = ({ setTransctionsModal, editExpense }) => {
   //   console.log(expenses);
   const initialState = {
     name: "",

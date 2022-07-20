@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   BsArrowLeftShort,
-  BsFillCalendar2MonthFill,
   BsFillCalendarPlusFill,
   BsSearch,
   BsFillCalendarWeekFill,
@@ -13,7 +12,7 @@ const Sidebar = ({ month, choice }) => {
   const [model, setModel] = useState(false);
 
   // onClick function to add a month
-  const addMonth = () => {
+  const openMonthModel = () => {
     setModel(true);
   };
   const handleOnClose = () => {
@@ -70,7 +69,7 @@ const Sidebar = ({ month, choice }) => {
         <div
           className={`flex items-center rounded-md mt-6 px-4 py-2 cursor-pointer`}
           onClick={() => {
-            addMonth();
+            openMonthModel();
           }}
         >
           <BsFillCalendarPlusFill

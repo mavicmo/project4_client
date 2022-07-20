@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import UserMethods from "../../Services/UserMethods";
 
@@ -15,8 +15,6 @@ const Signup = () => {
   const [errors, setErrors] = useState({});
   const [emailExistError, setEmailExistError] = useState(false);
   const [isSubmit, setIsSubmit] = useState(false);
-
-  const navigate = useNavigate();
 
   // handle submit
   const handleSubmit = (e) => {
@@ -41,7 +39,6 @@ const Signup = () => {
 
   // useEffect for input Values
   useEffect(() => {
-    console.log(errors);
     if (Object.keys(errors).length === 0 && isSubmit) {
       console.log(values);
     }

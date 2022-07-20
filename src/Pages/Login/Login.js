@@ -17,13 +17,13 @@ const Login = () => {
   };
 
   const loginHandle = async () => {
+    console.log("hit");
     try {
       const res = await UserMethods.login(values);
       console.log(res);
       localStorage.setItem("user", JSON.stringify(res.data));
 
       navigate("/homepage");
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }
@@ -33,7 +33,6 @@ const Login = () => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  console.log(values);
   return (
     <div className="signIn-page">
       <br />

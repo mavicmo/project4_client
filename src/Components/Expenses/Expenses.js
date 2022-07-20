@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import ExpenseMethods from "../../Services/ExpenseMethods";
+
 import UserMethods from "../../Services/UserMethods";
 import MonthMethods from "../../Services/MonthMethods";
 
 import DisplayExpenses from "../DisplayExpenses/DisplayExpenses";
-import EditExpense from "../EditExpense/EditExpense";
 
 const Expenses = ({
   monthId,
@@ -21,7 +19,7 @@ const Expenses = ({
     getExpenseData();
     setUseEffectExpense(false);
     setRenderNewExpense(false);
-  }, [useEffectExpense, renderNewExpense]);
+  }, [useEffectExpense, renderNewExpense, monthId]);
   const getExpenseData = async () => {
     try {
       const res = await MonthMethods.getExpensePerMonth(

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -32,7 +32,7 @@ const Months = () => {
   useEffect(() => {
     getMonth();
     setChoice(false);
-  }, [choice]);
+  }, [choice, monthId]);
   const getMonth = async () => {
     try {
       const res = await MonthMethods.getMonthByID(monthId, userToken);
