@@ -8,9 +8,10 @@ import {
 } from "react-icons/bs";
 import ListOfMonths from "../ListOfMonths/ListOfMonths";
 import AddMonth from "../AddMonth/AddMonth";
-const Sidebar = () => {
+const Sidebar = ({ month, choice }) => {
   const [open, setOpen] = useState(true);
   const [model, setModel] = useState(false);
+
   // onClick function to add a month
   const addMonth = () => {
     setModel(true);
@@ -64,7 +65,7 @@ const Sidebar = () => {
             }`}
           />
         </div>
-        <ListOfMonths open={open} />
+        <ListOfMonths open={open} choice={choice} />
 
         <div
           className={`flex items-center rounded-md mt-6 px-4 py-2 cursor-pointer`}

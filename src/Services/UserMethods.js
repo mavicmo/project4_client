@@ -2,7 +2,7 @@ import React from "react";
 
 import axios from "axios";
 
-const BASE_URL = "http://localhost:3005/api/users";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3005";
 
 class UserMethods {
   //test UserMethods class
@@ -12,12 +12,12 @@ class UserMethods {
 
   // method to sign up a user to the backend
   static signup = (userData) => {
-    return axios.post(`http://localhost:3005/api/users/signup`, userData);
+    return axios.post(BASE_URL + `api/users/signup`, userData);
   };
 
   // send frontend data to backend server to login
   static login = (userData) => {
-    return axios.post(`http://localhost:3005/api/users/login`, userData);
+    return axios.post(BASE_URL + `api/users/login`, userData);
   };
   // retrieve user data from local localStorage
   static getCurrentUser = () => {

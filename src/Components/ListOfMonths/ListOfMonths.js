@@ -7,9 +7,10 @@ import { Link, useNavigate } from "react-router-dom";
 const ListOfMonths = (open) => {
   const currentUserToken = UserMethods.getCurrentUser().jwt;
   const [months, setMonths] = useState([]);
+
   useEffect(() => {
     getMonthData();
-  }, [months]);
+  }, [open.choice]);
   const getMonthData = async () => {
     try {
       const res = await MonthMethods.getMonths(currentUserToken);

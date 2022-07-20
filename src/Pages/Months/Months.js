@@ -14,11 +14,14 @@ import EditMonth from "../../Components/EditMonth/EditMonth";
 const Months = () => {
   const navigate = useNavigate();
   const monthId = useParams().id;
-  // console.log(monthId);
   const userToken = UserMethods.getCurrentUser().jwt;
 
   const [month, setMonth] = useState([]);
+
   const [listOfExpenses, setListOfExpenses] = useState([]);
+
+  // use effect use state to render a new submit
+  const [renderNewExpense, setRenderNewExpense] = useState(false);
 
   // expense useState
   const [expenseValues, setExpenseValues] = useState();
@@ -28,7 +31,8 @@ const Months = () => {
 
   useEffect(() => {
     getMonth();
-  }, [month]);
+    setChoice(false);
+  }, [choice]);
   const getMonth = async () => {
     try {
       const res = await MonthMethods.getMonthByID(monthId, userToken);
@@ -51,6 +55,7 @@ const Months = () => {
     try {
       await MonthMethods.editMonthById(data, monthId, userToken);
       setEditModal(false);
+      setChoice(true);
     } catch (error) {
       console.log(error);
     }
@@ -58,8 +63,6 @@ const Months = () => {
 
   const deleteMonth = async (monthId, userToken) => {
     try {
-      console.log(`tryna delete the month`);
-
       await MonthMethods.deleteMonthById(monthId, userToken);
       await MonthMethods.deleteExpensesPerMonth(monthId, userToken);
       navigate("/homepage");
@@ -68,10 +71,10 @@ const Months = () => {
     }
   };
 
-  console.log();
   return (
     <div className="flex ">
-      <Sidebar />
+      {/* pass through month and use it */}
+      <Sidebar month={month} choice={choice} />
       <div className="container  mx-auto  max-w-6xl text-center drop-shadow-lg text-gray-800">
         <div className="flex py-8 mb-10   text-Black ">
           <h1 className=" text-4xl mr-5 ">
@@ -108,11 +111,14 @@ const Months = () => {
             listOfExpenses={listOfExpenses}
             expenseValues={expenseValues}
             setExpenseValues={setExpenseValues}
+            setRenderNewExpense={setRenderNewExpense}
           />
           <Expenses
             listOfExpenses={listOfExpenses}
             setListOfExpenses={setListOfExpenses}
             monthId={monthId}
+            renderNewExpense={renderNewExpense}
+            setRenderNewExpense={setRenderNewExpense}
             // editExpense={editExpense}
           />
         </div>
