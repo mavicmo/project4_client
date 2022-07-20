@@ -19,7 +19,7 @@ const AddMonth = ({ model, onClose }) => {
 
   const addMonthHandler = async () => {
     try {
-      const res = await MonthMethods.addMonths(values, currentUserToken);
+      await MonthMethods.addMonths(values, currentUserToken);
 
       window.location.reload();
     } catch (error) {
