@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const BASE_URL =
-  process.env.BASE_URL ||
-  "https://simplybudgetmt.herokuapp.com" ||
-  "http://localhost:3005";
+  // process.env.BASE_URL ||
+  "https://simplybudgetmt.herokuapp.com";
+// "http://localhost:3005";
 
 class UserMethods {
   //test UserMethods class

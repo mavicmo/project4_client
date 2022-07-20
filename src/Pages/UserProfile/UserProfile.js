@@ -12,10 +12,13 @@ const UserProfile = () => {
             {currentUser.firstName} {currentUser.lastName}
           </h1>
         </div>
-        <div className="  shadow-2xl  h-5/6 w-full ">
-          <h1 className="text-5xl font-bold ">
-            {currentUser.firstName} {currentUser.lastName}
-          </h1>
+        <div className="shadow-2xl  h-5/6 w-full border border-rose-400">
+          <div className="shadow-2xl m-10 p-6 border text-left border-rose-400">
+            <h1 className="text-lg font-bold ">
+              First Name:
+              <span className="text-4xl m-5 p-6">{currentUser.firstName}</span>
+            </h1>
+          </div>
         </div>
       </div>
     </div>
