@@ -1,8 +1,12 @@
 import { useState } from "react";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import UserMethods from "../../Services/UserMethods";
+import { FaEdit } from "react-icons/fa";
+
 const UserProfile = () => {
   const currentUser = UserMethods.getCurrentUser().user;
+  const currentUserToken = UserMethods.getCurrentUser().jwt;
+  const userId = currentUser._id;
   const [values, setValues] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
@@ -18,6 +22,25 @@ const UserProfile = () => {
     e.preventDefault();
     console.log(`edit got clicked`);
     console.log(editUser);
+
+    updateUser();
+  };
+
+  const updateUser = async () => {
+    try {
+      const res = await UserMethods.updateUser(
+        values,
+        userId,
+        currentUserToken
+      );
+      localStorage.setItem("user", JSON.stringify(res.updateUser));
+    } catch (errors) {
+      console.log(errors);
+    }
+  };
+
+  const onChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   return (
@@ -26,6 +49,12 @@ const UserProfile = () => {
       <div className=" w-full container mx-auto  max-w-6xl text-center drop-shadow-lg text-gray-800">
         <div className="p-7  mb-10  ">
           <h1 className=" text-5xl font-bold ">User Profile</h1>
+          <FaEdit
+            className="text-blue-700 text-lg mr-3 cursor-pointer"
+            onClick={() => {
+              setUserEdit(true);
+            }}
+          />
         </div>
         <form onSubmit={handleSubmit}>
           <div className="shadow-2xl  h-5/6 w-full border ">
@@ -35,9 +64,9 @@ const UserProfile = () => {
                 {editUser ? (
                   <input
                     type="name"
-                    name="name"
+                    name="firstName"
                     id="name"
-                    // onChange={onChange}
+                    onChange={onChange}
                     value={values.firstName}
                     className="rounded-lg appearance-none border-2 border-teal-500   w-full mb-2
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white "
@@ -56,9 +85,9 @@ const UserProfile = () => {
                 {editUser ? (
                   <input
                     type="name"
-                    name="name"
+                    name="lastName"
                     id="name"
-                    // onChange={onChange}
+                    onChange={onChange}
                     value={values.lastName}
                     className="rounded-lg appearance-none border-2 border-teal-500   w-full mb-2
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white "
@@ -76,10 +105,10 @@ const UserProfile = () => {
                 Email:
                 {editUser ? (
                   <input
-                    type="name"
-                    name="name"
+                    type="email"
+                    name="email"
                     id="name"
-                    // onChange={onChange}
+                    onChange={onChange}
                     value={values.email}
                     className="rounded-lg appearance-none border-2 border-teal-500   w-full mb-2
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white "
@@ -96,10 +125,10 @@ const UserProfile = () => {
                 {editUser ? (
                   <>
                     <input
-                      type="name"
-                      name="name"
+                      type="password"
+                      name="password"
                       id="name"
-                      // onChange={onChange}
+                      onChange={onChange}
                       value={values.password}
                       className="rounded-lg appearance-none border-2 border-teal-500   w-full mb-2
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white "
@@ -107,11 +136,11 @@ const UserProfile = () => {
                     />
                     <label>Confirm Password:</label>
                     <input
-                      type="name"
-                      name="name"
+                      type="password"
+                      name="confirmPassword"
                       id="name"
-                      // onChange={onChange}
-                      value={values.password}
+                      onChange={onChange}
+                      value={values.confirmPassword}
                       className="rounded-lg appearance-none border-2 border-teal-500   w-full mb-2
               py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white "
                       required
@@ -123,21 +152,21 @@ const UserProfile = () => {
               </h1>
             </div>
             <div className="submit-btn m-10 p-6">
-              <button
-                onClick={() => {
-                  setUserEdit(true);
-                }}
-                className="border shadow-2xl w-6/12 border-teal-500 rounded-lg py-2 text-lg text-white bg-teal-500 "
-              >
-                Edit User
-              </button>
               {editUser ? (
-                <button
-                  onClick={cancelHandle}
-                  className="border border-red-500 rounded-lg py-2 text-lg text-white bg-red-500 w-6/12"
-                >
-                  Cancel Edit
-                </button>
+                <>
+                  <button
+                    type="submit"
+                    className="border shadow-2xl w-6/12 border-blue-500 rounded-lg py-2 text-lg text-white bg-blue-500 "
+                  >
+                    Submit Edit
+                  </button>
+                  <button
+                    onClick={cancelHandle}
+                    className="border border-red-500 rounded-lg py-2 text-lg text-white bg-red-500 w-6/12"
+                  >
+                    Cancel Edit
+                  </button>
+                </>
               ) : null}
             </div>
           </div>
