@@ -50,7 +50,7 @@ const EditMonth = ({ setEditModal, setChoice, month, editMonth }) => {
                 <select
                   id="expenses"
                   name="month"
-                  value={values.category}
+                  value={values.month}
                   onChange={onChange}
                   className="bg-gray-50 border overflow-y-auto  border-teal-500  text-gray-900 text-lg rounded-lg focus:ring-teal-500 focus:border-teal-500 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-teal-500 dark:focus:border-teal-500"
                 >

@@ -9,14 +9,11 @@ const TransactionForm = ({
   setListOfExpenses,
   listOfExpenses,
   setRenderNewExpense,
-  expenseValues,
-  setExpenseValues,
 }) => {
   const initialState = { name: "", amount: "", category: "", monthId: monthId };
   const currentUserToken = UserMethods.getCurrentUser().jwt;
   const [values, setValues] = useState(initialState);
-  // setExpenseValues(initialState);
-  // console.log(expenseValues);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     ExpenseMethods.test();

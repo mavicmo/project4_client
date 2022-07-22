@@ -50,12 +50,12 @@ const DisplayExpenses = ({
     <div>
       {Object.keys(expenses).map((expense) => {
         return (
-          <div className="p-3  ">
+          <div className="p-3 container ">
             <h1 className="font-bold text-2xl text-left  ">
               {capitalizeFirstLetter(`${expense}`)}
             </h1>
-            <div className="overflow-auto whitespace-normal">
-              <table className="w-full text-sm text-left whitespace-normal  text-gray-500 dark:text-black table-auto">
+            <div className="overflow-auto whitespace-normal ">
+              <table className=" w-full text-sm text-left whitespace-normal  text-gray-500 dark:text-black table-auto max-h-5">
                 <thead className="text-xs text-emerald-50 uppercase whitespace-normal bg-gray-50 dark:bg-teal-900 dark:text-emerald-50">
                   <tr>
                     <th scope="col" className="whitespace-normal py-1 px-3">
@@ -71,7 +71,7 @@ const DisplayExpenses = ({
                     </th>
                   </tr>
                 </thead>
-                <tbody className="overflow-auto relative h-2/6">
+                <tbody className="overflow-y-scroll flex-col relative">
                   {expenses[expense].map((item) => {
                     return (
                       <tr

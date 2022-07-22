@@ -12,6 +12,8 @@ const Expenses = ({
   setRenderNewExpense,
   useEffectExpense,
   setUseEffectExpense,
+  setPaychecks,
+  setExpenseValues,
 }) => {
   //modal expenses
   const currentUserToken = UserMethods.getCurrentUser().jwt;
@@ -29,10 +31,14 @@ const Expenses = ({
         currentUserToken
       );
       setExpenses(res.data.data);
+      setExpenseValues(res.data.data);
+      setPaychecks(res.data.data.paycheck);
     } catch (error) {
       console.log(error);
     }
   };
+
+  console.log(expenses);
 
   if (!Object.keys(expenses)) {
     console.log(" Expense waiting...");
@@ -43,8 +49,8 @@ const Expenses = ({
   }
 
   return (
-    <div className="border rounded-3xl bg-teal-100 ">
-      <h1 className="font-bold text-3xl pt-5 mb-5">Expenses</h1>
+    <div className=" border rounded-3xl bg-teal-100 ">
+      <h1 className=" font-bold text-3xl pt-5 mb-5">Expenses</h1>
       <DisplayExpenses
         monthId={monthId}
         expenses={expenses}

@@ -42,22 +42,27 @@ const AddMonth = ({ model, onClose }) => {
           <div>
             <div className="flex justify-center">
               <div className="w-full">
-                <label
-                  className="block uppercase tracking-wide text-white text-xs font-bold mb-2"
-                  htmlFor="month"
-                >
-                  Month
-                </label>
-                <input
-                  //   type="Month"
+                <select
+                  id="expenses"
                   name="month"
-                  id="month"
                   value={values.month}
                   onChange={onChange}
-                  className="bg-white appearance-none border-2 border-teal-200 rounded w-full 
-                py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
-                  required
-                />
+                  className="bg-gray-50 border border-black   text-sm rounded-lg focus:ring-teal-700 focus:border-teal-700 block w-full p-2.5 dark:bg-white-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-teal-700 dark:focus:border-teal-700"
+                >
+                  <option selected>Months</option>
+                  <option value="January">January</option>
+                  <option value="February">February</option>
+                  <option value="March">March</option>
+                  <option value="Apirl">Apirl</option>
+                  <option value="May">May</option>
+                  <option value="June">June</option>
+                  <option value="July">July</option>
+                  <option value="August">August</option>
+                  <option value="September">September</option>
+                  <option value="October">October</option>
+                  <option value="November">November</option>
+                  <option value="December">December</option>
+                </select>
               </div>
             </div>
 

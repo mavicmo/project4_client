@@ -10,29 +10,6 @@ import { chartData, getTotalExpenses } from "../../Helper/DoughnutHelp";
 
 Chart.register(ArcElement);
 
-const data = {};
-
-const config = {
-  data: {
-    datasets: [
-      {
-        data: [25, 50, 25],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-        hoverOffset: 4,
-        borderRadius: 30,
-        spacing: 10,
-      },
-    ],
-  },
-  options: {
-    cutout: 115,
-  },
-};
-
 export default function Graph({ monthId, renderNewExpense, useEffectExpense }) {
   const currentUserToken = UserMethods.getCurrentUser().jwt;
   //use state
@@ -55,17 +32,6 @@ export default function Graph({ monthId, renderNewExpense, useEffectExpense }) {
   };
 
   let graphData = <Doughnut {...chartData(expenses)}></Doughnut>;
-  //   console.log(graphData);
-  //   const { data, isFetching, isSuccess, isError } = api.useGetLabelsQuery();
-  //   let graphData;
-
-  //   if (isFetching) {
-  //     graphData = <div>Fetching</div>;
-  //   } else if (isSuccess) {
-  //     graphData = <Doughnut {...chart_Data(data)}></Doughnut>;
-  //   } else if (isError) {
-  //     graphData = <div>Error</div>;
-  //   }
 
   return (
     <div className="flex justify-content max-w-sm border ml-5 p-10 bg-teal-100 shadow-sm border-grey-500 rounded-3xl">

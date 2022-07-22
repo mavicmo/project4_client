@@ -9,6 +9,8 @@ import Sidebar from "../../Components/Sidebar/Sidebar";
 import UserMethods from "../../Services/UserMethods";
 import MonthMethods from "../../Services/MonthMethods";
 import TransactionForm from "../../Components/TransactionForm/TransactionForm";
+import DisplayPaycheck from "../../Components/DisplayPaycheck/DisplayPaycheck";
+import TotalAmounts from "../../Components/TotalAmounts/TotalAmounts";
 import Expenses from "../../Components/Expenses/Expenses";
 import EditMonth from "../../Components/EditMonth/EditMonth";
 import Graph from "../../Components/Graph/Graph";
@@ -20,7 +22,7 @@ const Months = () => {
   const [month, setMonth] = useState([]);
 
   const [listOfExpenses, setListOfExpenses] = useState([]);
-
+  const [paychecks, setPaychecks] = useState([]);
   // use effect use state to render a new submit
   const [renderNewExpense, setRenderNewExpense] = useState(false);
   const [useEffectExpense, setUseEffectExpense] = useState(false);
@@ -73,11 +75,11 @@ const Months = () => {
   };
 
   return (
-    <div className="flex ">
+    <div className="flex  ">
       <Sidebar month={month} choice={choice} />
-      <div className="container  mx-auto  max-w-6xl text-center drop-shadow-lg text-gray-800">
-        <div className="flex py-8 mb-10   text-Black ">
-          <h1 className=" text-4xl mr-5 ">
+      <div className="container mx-auto text-center drop-shadow-lg text-gray-800 ">
+        <div className="flex py-8 mb-10 ml-10  ">
+          <h1 className=" text-5xl mr-5 ">
             Expense for the Month of {capitalizeFirstLetter(`${month.month}`)}
           </h1>
           <FaEdit
@@ -103,30 +105,32 @@ const Months = () => {
         </div>
 
         {/* grid columns */}
-        <div className="grid grid-rows-3 grid-flow-col gap-4  ">
-          <div className="">
+        <div className="grid grid-rows-1 grid-flow-col gap-4  ">
+          <div className="flex m-0">
             <TransactionForm
               monthId={monthId}
               getMonth={getMonth}
               setListOfExpenses={setListOfExpenses}
               listOfExpenses={listOfExpenses}
-              expenseValues={expenseValues}
-              setExpenseValues={setExpenseValues}
               setRenderNewExpense={setRenderNewExpense}
             />
+            <DisplayPaycheck paychecks={paychecks} />
           </div>
-          <div className="row-span-2 col-span-2">
+          <div className="grid grid-flow-col auto-cols-max ">
             <Graph
               monthId={monthId}
               renderNewExpense={renderNewExpense}
               useEffectExpense={useEffectExpense}
             />
+            <TotalAmounts expenseValues={expenseValues} />
           </div>
-          <div className="row-span-2 col-span-2">
+          <div className="row-span-2 col-span-10 ">
             <Expenses
               listOfExpenses={listOfExpenses}
               setListOfExpenses={setListOfExpenses}
               monthId={monthId}
+              setPaychecks={setPaychecks}
+              setExpenseValues={setExpenseValues}
               renderNewExpense={renderNewExpense}
               setRenderNewExpense={setRenderNewExpense}
               useEffectExpense={useEffectExpense}

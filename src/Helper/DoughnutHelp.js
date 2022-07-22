@@ -104,6 +104,84 @@ export function getLabels(expenses) {
   return obj;
 }
 
+export function getLabelAmounts(expenses) {
+  const dataAmount = getTotalDataAmounts(expenses);
+
+  const obj = [
+    {
+      type: "Need",
+      color: "rgb(255, 99, 132)",
+      totalAmount: dataAmount[0],
+    },
+    {
+      type: "Want",
+      color: "rgb(54, 162, 235)",
+      totalAmount: dataAmount[1],
+    },
+    {
+      type: "Save",
+      color: "#f9c74f",
+      totalAmount: dataAmount[2],
+    },
+    {
+      type: "Investment",
+      color: "rgb(0,128,0)",
+      totalAmount: dataAmount[3],
+    },
+  ];
+  return obj;
+}
+
+export function getTotalDataAmounts(expenses) {
+  let dataAmount = [];
+  const getAmountNeedData = () => {
+    let totalAmount = 0;
+    expenses?.need?.forEach((expense) => {
+      totalAmount += +expense.amount;
+    });
+
+    dataAmount.push(Math.floor(totalAmount));
+  };
+  const getAmountWantData = () => {
+    let totalAmount = 0;
+    expenses?.want?.forEach((expense) => {
+      totalAmount += +expense.amount;
+    });
+
+    dataAmount.push(Math.floor(totalAmount));
+  };
+  const getAmountSaveData = () => {
+    let totalAmount = 0;
+    expenses?.save?.forEach((expense) => {
+      totalAmount += +expense.amount;
+    });
+
+    dataAmount.push(Math.floor(totalAmount));
+  };
+  const getAmountInvestmentData = () => {
+    let totalAmount = 0;
+    expenses?.investment?.forEach((expense) => {
+      totalAmount += +expense.amount;
+    });
+
+    dataAmount.push(Math.floor(totalAmount));
+  };
+  getAmountNeedData();
+  getAmountWantData();
+  getAmountSaveData();
+  getAmountInvestmentData();
+
+  return dataAmount;
+}
+
+export function getTotalPaycheck(paychecks) {
+  let totalAmount = 0;
+  paychecks.forEach((paycheck) => {
+    totalAmount += +paycheck.amount;
+  });
+  return totalAmount;
+}
+
 export function getTotalExpenses(expenses) {
   const getTotalPaycheck = () => {
     let totalAmount = 0;

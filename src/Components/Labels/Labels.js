@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { Chart } from "chart.js";
 import { getLabels } from "../../Helper/DoughnutHelp";
 export default function Labels({ expenses }) {
   let Transactions = getLabels(expenses).map((v, i) => (
