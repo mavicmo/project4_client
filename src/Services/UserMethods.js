@@ -22,12 +22,21 @@ class UserMethods {
 
   // send frontend data to backend server to update userData
   static updateUser = (userData, userId, currentUserToken) => {
-    console.log(userData);
     return axios.put(BASE_URL + `/api/users/edit/${userId}`, userData, {
       headers: {
         Authorization: `${currentUserToken}`,
       },
     });
+  };
+
+  //get user by ID
+  static getUserById = (userId) => {
+    return axios.get(BASE_URL + `/api/users/get/${userId}`);
+  };
+
+  //get all the users
+  static getAllUsers = (currentUserToken) => {
+    return axios.get(BASE_URL + `/api/users/`);
   };
 
   // retrieve user data from local localStorage

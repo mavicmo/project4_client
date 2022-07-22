@@ -32,15 +32,16 @@ const UserProfile = () => {
 
   const updateUser = async () => {
     try {
-      const res = await UserMethods.updateUser(
-        values,
-        currentUser._id,
-        currentUserToken
-      );
-      console.log(res);
-      localStorage.setItem("user", JSON.stringify(res.data));
+      await UserMethods.updateUser(values, currentUser._id, currentUserToken);
+      const res = await UserMethods.getAllUsers();
+      const userId = res.data.users.at(-1)._id;
+      console.log(userId);
+      const resUser = await UserMethods.getUserById(userId);
+      console.log(resUser.data);
+      localStorage.setItem("user", JSON.stringify(resUser.data));
       currentUser = UserMethods.getCurrentUser().user;
-      setUserUpdated(true);
+      console.log(currentUser);
+      setUserEdit(false);
     } catch (errors) {
       console.log(errors);
     }
