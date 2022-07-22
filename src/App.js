@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./App.css";
 import PageRouter from "./Router/PageRouter";
 import Navbar from "./Components/Navbar/Navbar";
 

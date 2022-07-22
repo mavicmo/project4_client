@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-yollow: #f9c74f;
+  --color-purple: #9d4edd;
+}
+
 body {
   background-color: #aad2d5;
 }

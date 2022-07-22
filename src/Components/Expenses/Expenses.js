@@ -10,11 +10,13 @@ const Expenses = ({
   setListOfExpenses,
   renderNewExpense,
   setRenderNewExpense,
+  useEffectExpense,
+  setUseEffectExpense,
 }) => {
   //modal expenses
   const currentUserToken = UserMethods.getCurrentUser().jwt;
   const [expenses, setExpenses] = useState([]);
-  const [useEffectExpense, setUseEffectExpense] = useState(false);
+
   useEffect(() => {
     getExpenseData();
     setUseEffectExpense(false);
@@ -41,7 +43,7 @@ const Expenses = ({
   }
 
   return (
-    <div className="border rounded-3xl bg-teal-100 h-auto w-8/12">
+    <div className="border rounded-3xl bg-teal-100 ">
       <h1 className="font-bold text-3xl pt-5 mb-5">Expenses</h1>
       <DisplayExpenses
         monthId={monthId}

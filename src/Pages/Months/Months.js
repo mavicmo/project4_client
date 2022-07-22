@@ -11,6 +11,7 @@ import MonthMethods from "../../Services/MonthMethods";
 import TransactionForm from "../../Components/TransactionForm/TransactionForm";
 import Expenses from "../../Components/Expenses/Expenses";
 import EditMonth from "../../Components/EditMonth/EditMonth";
+import Graph from "../../Components/Graph/Graph";
 const Months = () => {
   const navigate = useNavigate();
   const monthId = useParams().id;
@@ -22,7 +23,7 @@ const Months = () => {
 
   // use effect use state to render a new submit
   const [renderNewExpense, setRenderNewExpense] = useState(false);
-
+  const [useEffectExpense, setUseEffectExpense] = useState(false);
   // expense useState
   const [expenseValues, setExpenseValues] = useState();
   // usestate for the edit modal
@@ -73,7 +74,6 @@ const Months = () => {
 
   return (
     <div className="flex ">
-      {/* pass through month and use it */}
       <Sidebar month={month} choice={choice} />
       <div className="container  mx-auto  max-w-6xl text-center drop-shadow-lg text-gray-800">
         <div className="flex py-8 mb-10   text-Black ">
@@ -103,24 +103,36 @@ const Months = () => {
         </div>
 
         {/* grid columns */}
-        <div className="grid md:grid-cols-2">
-          <TransactionForm
-            monthId={monthId}
-            getMonth={getMonth}
-            setListOfExpenses={setListOfExpenses}
-            listOfExpenses={listOfExpenses}
-            expenseValues={expenseValues}
-            setExpenseValues={setExpenseValues}
-            setRenderNewExpense={setRenderNewExpense}
-          />
-          <Expenses
-            listOfExpenses={listOfExpenses}
-            setListOfExpenses={setListOfExpenses}
-            monthId={monthId}
-            renderNewExpense={renderNewExpense}
-            setRenderNewExpense={setRenderNewExpense}
-            // editExpense={editExpense}
-          />
+        <div className="grid grid-rows-3 grid-flow-col gap-4  ">
+          <div className="">
+            <TransactionForm
+              monthId={monthId}
+              getMonth={getMonth}
+              setListOfExpenses={setListOfExpenses}
+              listOfExpenses={listOfExpenses}
+              expenseValues={expenseValues}
+              setExpenseValues={setExpenseValues}
+              setRenderNewExpense={setRenderNewExpense}
+            />
+          </div>
+          <div className="row-span-2 col-span-2">
+            <Graph
+              monthId={monthId}
+              renderNewExpense={renderNewExpense}
+              useEffectExpense={useEffectExpense}
+            />
+          </div>
+          <div className="row-span-2 col-span-2">
+            <Expenses
+              listOfExpenses={listOfExpenses}
+              setListOfExpenses={setListOfExpenses}
+              monthId={monthId}
+              renderNewExpense={renderNewExpense}
+              setRenderNewExpense={setRenderNewExpense}
+              useEffectExpense={useEffectExpense}
+              setUseEffectExpense={setUseEffectExpense}
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import UserMethods from "../../Services/UserMethods";
 import { FaEdit } from "react-icons/fa";
 
 const UserProfile = () => {
-  const currentUser = UserMethods.getCurrentUser().user;
+  let currentUser = UserMethods.getCurrentUser().user;
   const currentUserToken = UserMethods.getCurrentUser().jwt;
-  const userId = currentUser._id;
+
   const [values, setValues] = useState({
     firstName: currentUser.firstName,
     lastName: currentUser.lastName,
@@ -14,7 +14,7 @@ const UserProfile = () => {
     password: "********",
   });
   const [editUser, setUserEdit] = useState(false);
-
+  const [updatedUser, setUserUpdated] = useState(false);
   const cancelHandle = () => {
     setUserEdit(false);
   };
@@ -26,14 +26,21 @@ const UserProfile = () => {
     updateUser();
   };
 
+  // useEffect(() => {
+  //   const currentUser = UserMethods.getCurrentUser().user;
+  // }, [updatedUser]);
+
   const updateUser = async () => {
     try {
       const res = await UserMethods.updateUser(
         values,
-        userId,
+        currentUser._id,
         currentUserToken
       );
-      localStorage.setItem("user", JSON.stringify(res.updateUser));
+      console.log(res);
+      localStorage.setItem("user", JSON.stringify(res.data));
+      currentUser = UserMethods.getCurrentUser().user;
+      setUserUpdated(true);
     } catch (errors) {
       console.log(errors);
     }
@@ -47,10 +54,10 @@ const UserProfile = () => {
     <div className="flex ">
       <Sidebar />
       <div className=" w-full container mx-auto  max-w-6xl text-center drop-shadow-lg text-gray-800">
-        <div className="p-7  mb-10  ">
+        <div className="p-7  mb-10 flex ">
           <h1 className=" text-5xl font-bold ">User Profile</h1>
           <FaEdit
-            className="text-blue-700 text-lg mr-3 cursor-pointer"
+            className="text-blue-700 text-lg ml-3 cursor-pointer"
             onClick={() => {
               setUserEdit(true);
             }}
