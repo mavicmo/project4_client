@@ -7,6 +7,7 @@ const Login = () => {
     email: "",
     password: "",
   });
+  const [invalidLogin, setInvalidLogin] = useState(false);
   const navigate = useNavigate();
 
   // handle submit the form
@@ -22,10 +23,11 @@ const Login = () => {
       const res = await UserMethods.login(values);
       console.log(res);
       localStorage.setItem("user", JSON.stringify(res.data));
-
+      setInvalidLogin(false);
       navigate("/homepage");
     } catch (error) {
       console.log(error);
+      setInvalidLogin(true);
     }
   };
   // setting the values
@@ -77,6 +79,11 @@ const Login = () => {
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
                 required
               />
+              {invalidLogin ? (
+                <span className="text-sm text-rose-700">
+                  Invalid Username or Password!
+                </span>
+              ) : null}
             </div>
           </div>
 
@@ -98,6 +105,11 @@ const Login = () => {
                 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-teal-500"
                 required
               />
+              {invalidLogin ? (
+                <span className="text-sm text-rose-700">
+                  Invalid Username or Password!
+                </span>
+              ) : null}
             </div>
           </div>
           {/** submit button */}

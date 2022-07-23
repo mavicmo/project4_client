@@ -210,7 +210,7 @@ const Signup = () => {
                 Confirm Password
               </label>
               <input
-                type="confirmPassword"
+                type="password"
                 name="confirmPassword"
                 id="confirmPassword"
                 value={values.confirmPassword}
