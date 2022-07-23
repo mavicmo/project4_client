@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# SimplyBudget. Frontend Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Links
 
-## Available Scripts
+- [App Link](https://simplybudget.netlify.app/).
+- [Backend Github](https://github.com/mavicmo/project4_server)
+- [Frontend Github](https://github.com/mavicmo/project4_client)
 
-In the project directory, you can run:
+# Technologies/Langauges Used
 
-### `npm start`
+- Client
+  - ReactJS
+  - Tailwindcss
+  - Netifly
+  - Axios
+- Server
+  - NodeJs
+  - JavaScript
+  - ExpressJs
+  - Mongoose
+  - JSON Web Token
+  - Bcrypt/Hash
+  - Dotenv
+  - Axios
+  - MongoDB Atlas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Application Summary
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+SimplyBudget!
 
-### `npm test`
+Welcome to SimplyBudget a website to help people budget their money easily! This web application allows user to add expenses in different catorgies like Need, Want, Save, Investment, Paycheck. Users will see how much money is left at the end after adding all the expenses. This will allow the user to know if they are staying in track of their budgetting plan!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## User Stories
 
-### `npm run build`
+As a User...
+- I want to be able to sign up and login for security.
+- I want to be able to edit my user profile for update.
+- I want to be able to view the list of months that have been created. 
+- I want to be able to create/edit/delete a month.
+- I want to be able to click and and view each month.
+- I want to be able to create/read/update/delete a expense.
+- I want to be able to logout and remove my sessions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Wireframes
+![Screen Shot 2022-07-22 at 11 58 11 PM](https://user-images.githubusercontent.com/98199343/180589651-8db80b66-8099-41d5-9ba3-dfb39e067f13.png)
+![Screen Shot 2022-07-22 at 11 58 26 PM](https://user-images.githubusercontent.com/98199343/180589657-e51783e1-1757-41c7-950c-6473224217e6.png)
+![Screen Shot 2022-07-22 at 11 58 36 PM](https://user-images.githubusercontent.com/98199343/180589661-0e08bce5-a6a7-4408-b55a-68dcce5f22ab.png)
+![Screen Shot 2022-07-22 at 11 58 49 PM](https://user-images.githubusercontent.com/98199343/180589665-969a69ab-4b60-44c8-b6b0-9d394b3922c8.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ 
