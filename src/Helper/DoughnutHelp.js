@@ -235,3 +235,18 @@ export function getTotalExpenses(expenses) {
 
   return dataAmount;
 }
+
+export function getSaving(expenses) {
+  const totalExpenses = getTotalExpenses(expenses);
+  const getTotalPaycheck = () => {
+    let totalAmount = 0;
+    expenses?.paycheck?.forEach((expense) => {
+      totalAmount += +expense.amount;
+    });
+    return totalAmount;
+  };
+  const totalPaycheck = getTotalPaycheck();
+
+  const getSaving = totalPaycheck - totalExpenses;
+  return getSaving;
+}

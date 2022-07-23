@@ -45,7 +45,7 @@ const Sidebar = ({ month, choice }) => {
             Months
           </h1>
         </div>
-        <div
+        {/* <div
           className={`flex items-center bg-gray-200 rounded-md mt-6 ${
             !open ? "px-2.5" : "px-4"
           } py-2`}
@@ -55,15 +55,17 @@ const Sidebar = ({ month, choice }) => {
               open && "mr-2"
             }`}
             onClick={() => setOpen(!open)}
+            onChange={inputHandler}
           />
           <input
             type={"search"}
+            value={value.search}
             placeholder="Search"
             className={`text-base bg-transparent w-full focus:outline-one  ${
               !open && "hidden"
             }`}
           />
-        </div>
+        </div> */}
         <ListOfMonths open={open} choice={choice} />
 
         <div
